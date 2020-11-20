@@ -1,2 +1,5 @@
 [jeedom]
-meteo_url = ""
+server_url = "http://servername.lan"
+apikey = "xxxxxxxxxxxxxxxxxxxxx"
+id_meteo_url = "1"
+id_meteo_condition = "2"

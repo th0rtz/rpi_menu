@@ -67,10 +67,11 @@ def update_time():
     make_label(le_time,125,11,30,black)
 
 # define function for getting unique data from url
-def get_jeedom_data(url):
-    r = requests.get(url)
-    temp = r.json()
-    return temp
+def get_jeedom_data(id):
+    lurl = (config['jeedom']['server_url'] + "/core/api/jeeApi.php?apikey=" + config['jeedom']['apikey'] + "&type=cmd&id=" + id)
+    r = requests.get(lurl)
+    data = r.content.decode("utf-8")
+    return data
 
 # Define each button press action
 def button(number):
@@ -79,7 +80,8 @@ def button(number):
     if number == 1:
         carImg = pygame.image.load("img_src/main_test.png").convert_alpha()
         screen.blit(carImg, (0, 0))
-        make_label(get_jeedom_data(config['jeedom']['meteo_url']), 200, 120, 55, blue)
+        make_label(get_jeedom_data(config['jeedom']['id_temp_intern']), 200, 120, 55, blue)
+        make_label(get_jeedom_data(config['jeedom']['id_meteo_condition']), 200, 100, 20, blue)
         back_button()
         pygame.display.flip()
 
